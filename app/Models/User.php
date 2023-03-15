@@ -42,4 +42,8 @@ class User extends Authenticatable {
         'birth_date' => 'date',
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeOrderByBirthday($query){
+        $query->orderByRaw('date_format(birth_date, "%m-%d")');
+    }
 }

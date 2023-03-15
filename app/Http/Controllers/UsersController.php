@@ -15,7 +15,9 @@ class UsersController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
-        $users = User::orderBy('name')
+        $users = User::
+            orderByBirthday()
+            ->orderBy('name')
             ->paginate();
 
         return view('users.index', [
