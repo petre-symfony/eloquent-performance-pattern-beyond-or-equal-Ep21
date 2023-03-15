@@ -39,10 +39,7 @@ class User extends Authenticatable {
      * @var array<string, string>
      */
     protected $casts = [
+        'birth_date' => 'date',
         'email_verified_at' => 'datetime',
     ];
-
-    public function customer() {
-        return $this->hasMany(Customer::class, 'sales_rep_id');
-    }
 }

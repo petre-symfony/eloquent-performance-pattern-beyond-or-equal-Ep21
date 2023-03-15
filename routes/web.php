@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\UsersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [ProfileController::class, 'edit']);
+Route::get('/', [UsersController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
