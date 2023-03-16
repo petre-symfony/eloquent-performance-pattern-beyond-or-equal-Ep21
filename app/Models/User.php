@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -45,5 +46,12 @@ class User extends Authenticatable {
 
     public function scopeOrderByBirthday($query){
         $query->orderByRaw('date_format(birth_date, "%m-%d")');
+    }
+
+    public function scopeWhereBirtdayThisWeek($query){
+        $query->whereRaw('date_format(birth_date, "%m-%d") between ? and ?', [
+            Carbon::now()->startOfWeek()->format('m-d'),
+            Carbon::now()->endOfWeek()->format('m-d')
+        ]);
     }
 }

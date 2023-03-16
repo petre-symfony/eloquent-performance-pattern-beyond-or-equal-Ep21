@@ -16,7 +16,8 @@ class UsersController extends Controller {
      */
     public function index(): View {
         $users = User::
-            orderByBirthday()
+            whereBirtdayThisWeek()
+            ->orderByBirthday()
             ->orderBy('name')
             ->paginate();
 
