@@ -49,6 +49,8 @@ class User extends Authenticatable {
     }
 
     public function scopeWhereBirtdayThisWeek($query){
+        Carbon::setTestNow(Carbon::parse('January 1, 2023'));
+
         $query->whereRaw('date_format(birth_date, "%m-%d") between ? and ?', [
             Carbon::now()->startOfWeek()->format('m-d'),
             Carbon::now()->endOfWeek()->format('m-d')
