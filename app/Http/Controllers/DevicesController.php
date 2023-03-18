@@ -16,9 +16,6 @@ class DevicesController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
-        $devices = ['iPhone 5', 'iPhone 11'];
-        sort($devices, SORT_NATURAL);
-        return $devices;
         $devices = Device::
             orderByRaw('name')
             ->paginate();
