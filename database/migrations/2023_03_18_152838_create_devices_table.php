@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('brand');
             $table->string('resolution');
             $table->timestamps();
+            $table->rawIndex('(naturalsort(name))', 'name_sort_index');
         });
     }
 
