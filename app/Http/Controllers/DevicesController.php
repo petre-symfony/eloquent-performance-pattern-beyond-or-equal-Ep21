@@ -17,7 +17,7 @@ class DevicesController extends Controller {
      */
     public function index(): View {
         $devices = Device::
-            orderByRaw('name')
+            orderByRaw('naturalsort(name)')
             ->paginate();
 
         return view('devices.index', ['devices' => $devices]);
