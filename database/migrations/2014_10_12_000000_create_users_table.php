@@ -13,13 +13,14 @@ return new class extends Migration {
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->date('birth_date')->nullable();
+            // $table->date('birth_date')->nullable(); Ep21
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
 
+            /** Ep21
             if (config('database.default') === 'mysql') {
                 $table->rawIndex("(date_format(birth_date, '%m-%d')), name", 'users_birthday_name_index');
             }
@@ -37,6 +38,7 @@ return new class extends Migration {
 
                 $table->rawIndex('to_birthday(birth_date), name', 'users_birthday_name_index');
             }
+             */
         });
     }
 

@@ -13,6 +13,9 @@ class DatabaseSeeder extends Seeder {
      * Seed the application's database.
      */
     public function run(): void {
+        /**  Ep21
         User::factory(50000)->create();
+         *
+         */
     }
 }

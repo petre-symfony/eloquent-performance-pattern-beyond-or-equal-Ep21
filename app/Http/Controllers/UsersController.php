@@ -15,6 +15,7 @@ class UsersController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
+        /** Ep21
         $users = User::
             whereBirtdayThisWeek()
             ->orderByBirthday()
@@ -25,5 +26,6 @@ class UsersController extends Controller {
         return view('users.index', [
             'users' => $users
         ]);
+         */
     }
 }

@@ -44,6 +44,7 @@ class User extends Authenticatable {
         'email_verified_at' => 'datetime',
     ];
 
+    /** Ep21
     public function scopeOrderByBirthday($query){
         if (config('database.default') === 'mysql') {
             $query->orderByRaw('date_format(birth_date, "%m-%d")');
@@ -109,4 +110,5 @@ class User extends Authenticatable {
             throw new \Exception('This scope does not support Postgres.');
         }
     }
+     */
 }
