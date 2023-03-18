@@ -87,4 +87,26 @@ class User extends Authenticatable {
             );
         }
     }
+
+    public function scopeOrderByUpcomingBirthdays($query) {
+        if (config('database.default') === 'mysql') {
+            $query->orderByRaw('
+                case
+                    when (birth_date + interval (year(?) - year(birth_date)) year) >= ?
+                    then (birth_date + interval (year(?) - year(birth_date)) year)
+                    else (birth_date + interval (year(?) - year(birth_date)) + 1 year)
+                end
+            ', [
+                array_fill(0, 4, Carbon::now()->startOfWeek()->toDateString()),
+            ]);
+        }
+
+        if (config('database.default') === 'sqlite') {
+            throw new \Exception('This scope does not support SQLite.');
+        }
+
+        if (config('database.default') === 'pgsql') {
+            throw new \Exception('This scope does not support Postgres.');
+        }
+    }
 }
