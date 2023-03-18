@@ -18,11 +18,14 @@ class DatabaseSeeder extends Seeder {
          * User::factory(50000)->create();
          *
          */
+
+        /** Ep23
         collect($this->getDevices())->each(fn ($device) =>
             Device::factory()->create($device)
         );
+         */
     }
-
+    /** Ep23
     protected function getDevices() {
         return [
             ['name' => 'Samsung Galaxy A70s', 'brand' => 'Samsung', 'resolution' => '1080 x 2400 pixels, 20:9 ratio (~393 ppi density)'],
@@ -1471,4 +1474,5 @@ class DatabaseSeeder extends Seeder {
             ['name' => 'Motorola MOTOKEY 3-CHIP EX117', 'brand' => 'Motorola', 'resolution' => '220 x 176 pixels (~141 ppi pixel density)'],
         ];
     }
+     */
 }

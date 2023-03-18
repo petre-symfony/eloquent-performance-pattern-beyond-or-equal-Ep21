@@ -16,10 +16,12 @@ class DevicesController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
+        /** Ep23
         $devices = Device::
             orderByRaw('naturalsort(name)')
             ->paginate();
 
         return view('devices.index', ['devices' => $devices]);
+         */
     }
 }

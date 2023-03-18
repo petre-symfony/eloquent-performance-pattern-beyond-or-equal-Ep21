@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 // Route::get('/', [UsersController::class, 'index']); Ep21
-Route::get('/', [DevicesController::class, 'index']);
+// Route::get('/', [DevicesController::class, 'index']); Ep23
 
 Route::get('/dashboard', function () {
     return view('dashboard');

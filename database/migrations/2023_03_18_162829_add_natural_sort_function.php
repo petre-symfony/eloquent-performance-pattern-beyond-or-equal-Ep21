@@ -10,6 +10,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
+        /** Ep23
         if (config('database.default') === 'mysql') {
             // https://www.drupal.org/project/natsort
             DB::unprepared("
@@ -70,12 +71,14 @@ return new class extends Migration {
               from regexp_matches($1, \'0*([0-9]+)|([^0-9]+)\', \'g\') r; $f$;
           ');
         }
+         */
     }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void {
+        /** Ep23
         if (config('database.default') === 'mysql') {
             DB::unprepared('drop function if exists naturalsort');
         }
@@ -87,5 +90,6 @@ return new class extends Migration {
         if (config('database.default') === 'pgsql') {
             DB::unprepared('drop function if exists naturalsort');
         }
+         */
     }
 };

@@ -9,6 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
+        /** Ep23
         Schema::create('devices', function (Blueprint $table) {
             $table->id();
             $table->string('name');
@@ -17,12 +18,16 @@ return new class extends Migration {
             $table->timestamps();
             $table->rawIndex('(naturalsort(name))', 'name_sort_index');
         });
+         */
     }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void {
+        /** Ep23
         Schema::dropIfExists('devices');
+         *
+         */
     }
 };
