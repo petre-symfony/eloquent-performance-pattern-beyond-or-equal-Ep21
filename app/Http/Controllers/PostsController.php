@@ -21,6 +21,7 @@ class PostsController extends Controller {
             ->when(request('search'), function ($query, $search) {
                 if (config('database.default') === 'mysql') {
                     $query
+                        ->selectRaw('*, match(title, body) against(? in boolean mode) as score', [$search])
                         ->whereRaw('match(title, body) against(? in boolean mode)', [$search]);
                 }
 
@@ -30,7 +31,9 @@ class PostsController extends Controller {
 
                 if (config('database.default') === 'pgsql') {
                     $search = implode(' | ', array_filter(explode(' ', $search)));
-                    $query->whereRaw("searchable @@ to_tsquery('english', ?)", [$search]);
+                    $query
+                        ->selectRaw("*, ts_rank(searchable, to_tsquery('english', ?)) as score", [$search])
+                        ->whereRaw("searchable @@ to_tsquery('english', ?)", [$search]);
                 }
             })
             ->paginate();
