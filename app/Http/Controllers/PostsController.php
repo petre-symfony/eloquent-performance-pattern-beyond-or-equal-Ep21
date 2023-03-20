@@ -18,7 +18,21 @@ class PostsController extends Controller {
      */
     public function index(): View {
         $posts = Post::with('author')
-            ->latest('published_at')
+            ->when(request('search'), function ($query, $search) {
+                if (config('database.default') === 'mysql') {
+                    $query
+                        ->whereRaw('match(title, body) against(? in boolean mode)', [$search]);
+                }
+
+                if (config('database.default') === 'sqlite') {
+                    throw new \Exception('This lesson does not support SQLite.');
+                }
+
+                if (config('database.default') === 'pgsql') {
+                    $search = implode(' | ', array_filter(explode(' ', $search)));
+                    $query->whereRaw("searchable @@ to_tsquery('english', ?)", [$search]);
+                }
+            })
             ->paginate();
 
         return view('posts.index', ['posts' => $posts]);
