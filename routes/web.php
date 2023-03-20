@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DevicesController;
+use App\Http\Controllers\PostsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,7 @@ use Illuminate\Support\Facades\Route;
 
 // Route::get('/', [UsersController::class, 'index']); Ep21
 // Route::get('/', [DevicesController::class, 'index']); Ep23
+Route::get('/', [PostsController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
