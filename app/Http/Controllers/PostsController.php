@@ -33,10 +33,12 @@ class PostsController extends Controller {
                     $search = implode(' | ', array_filter(explode(' ', $search)));
                     $query
                         ->selectRaw("*, ts_rank(searchable, to_tsquery('english', ?)) as score", [$search])
-                        ->whereRaw("searchable @@ to_tsquery('english', ?)", [$search]);
+                        ->whereRaw("searchable @@ to_tsquery('english', ?)", [$search])
+                        ->orderByRaw("ts_rank(searchable, to_tsquery('english', ?)) desc", [$search]);
                 }
+            }, function($query){
+                $query->latest('published_at');
             })
-            ->latest('published_at')
             ->paginate();
 
         return view('posts.index', ['posts' => $posts]);
