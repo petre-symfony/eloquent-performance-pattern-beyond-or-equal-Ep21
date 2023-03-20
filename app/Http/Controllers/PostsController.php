@@ -36,6 +36,7 @@ class PostsController extends Controller {
                         ->whereRaw("searchable @@ to_tsquery('english', ?)", [$search]);
                 }
             })
+            ->latest('published_at')
             ->paginate();
 
         return view('posts.index', ['posts' => $posts]);
