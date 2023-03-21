@@ -17,6 +17,7 @@ class PostsController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
+        /** Ep24
         $posts = Post::with('author')
             ->when(request('search'), function ($query, $search) {
                 if (config('database.default') === 'mysql') {
@@ -42,5 +43,6 @@ class PostsController extends Controller {
             ->paginate();
 
         return view('posts.index', ['posts' => $posts]);
+         */
     }
 }

@@ -26,6 +26,7 @@ class DatabaseSeeder extends Seeder {
         );
          */
 
+        /** Ep24
         User::factory(100)->create()->each(fn ($user) =>
             Post::factory(5)->create([
                 'author_id' => $user->id
@@ -46,6 +47,7 @@ class DatabaseSeeder extends Seeder {
             'title' => 'Fox and the Hound',
             'body' => "Copper, you're my very best friend.\n\nAnd you're mine too, Tod.\n\nAnd we'll always be friends forever, won't we?\n\nYeah. Forever.",
         ]);
+         */
     }
     /** Ep23
     protected function getDevices() {

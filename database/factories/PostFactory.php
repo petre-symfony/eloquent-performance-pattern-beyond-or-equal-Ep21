@@ -15,6 +15,7 @@ class PostFactory extends Factory {
      * @return array<string, mixed>
      */
     public function definition(): array {
+        /** Ep24
         $title = substr(fake()->sentence(), 0, -1);
 
         return [
@@ -23,5 +24,6 @@ class PostFactory extends Factory {
             'body' => fake()->paragraphs(10, true),
             'published_at' => fake()->dateTimeThisDecade(),
         ];
+         */
     }
 }
