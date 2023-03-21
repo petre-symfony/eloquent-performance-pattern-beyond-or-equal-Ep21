@@ -18,7 +18,7 @@ class StoresController extends Controller {
      */
     public function index(): View {
         $myLocation = [-79.47, 43.14];
-        
+
         $stores = Store::
             selectDistanceTo($myLocation)
             ->paginate();
