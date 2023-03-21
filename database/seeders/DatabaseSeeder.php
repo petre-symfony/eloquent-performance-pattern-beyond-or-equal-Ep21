@@ -7,8 +7,10 @@ use App\Models\Company;
 use App\Models\Customer;
 use App\Models\Device;
 use App\Models\Post;
+use App\Models\Store;
 use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder {
     /**
@@ -48,6 +50,15 @@ class DatabaseSeeder extends Seeder {
             'body' => "Copper, you're my very best friend.\n\nAnd you're mine too, Tod.\n\nAnd we'll always be friends forever, won't we?\n\nYeah. Forever.",
         ]);
          */
+
+        $stores = array_map('str_getcsv', file(__DIR__.'/stores.csv'));
+        collect($stores)->each(fn ($store) => Store::factory()->create([
+            'address' => $store[0],
+            'city' => $store[1],
+            'state' => $store[2],
+            'postal' => $store[3]
+        ])
+        );
     }
     /** Ep23
     protected function getDevices() {
