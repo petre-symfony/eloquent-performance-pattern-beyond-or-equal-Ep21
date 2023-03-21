@@ -52,4 +52,26 @@ class Store extends Model {
             )', [...$coordinates, $distance]);
         }
     }
+
+    public function scopeOrderByDistanceTo($query, array $coordinates, string $direction = 'asc'){
+        $direction = strtolower($direction) === 'asc' ? 'asc' : 'desc';
+
+        if (config('database.default') === 'mysql') {
+            $query->orderByRaw('ST_Distance(
+                location,
+                ST_SRID(Point(?, ?), 4326)
+            ) '.$direction, $coordinates);
+        }
+
+        if (config('database.default') === 'sqlite') {
+            throw new \Exception('This lesson does not support SQLite.');
+        }
+
+        if (config('database.default') === 'pgsql') {
+            $query->orderByRaw('ST_Distance(
+                location,
+                ST_MakePoint(?, ?)::geography
+            ) '.$direction, $coordinates);
+        }
+    }
 }
