@@ -31,4 +31,25 @@ class Store extends Model {
             ) as distance', $coordinates);
         }
     }
+
+    public function scopeWithinDistanceTo($query, array $coordinates, int $distance){
+        if (config('database.default') === 'mysql') {
+            $query->whereRaw('ST_Distance(
+                location,
+                ST_SRID(Point(?, ?), 4326)
+            ) <= ?', [...$coordinates, $distance]);
+        }
+
+        if (config('database.default') === 'sqlite') {
+            throw new \Exception('This lesson does not support SQLite.');
+        }
+
+        if (config('database.default') === 'pgsql') {
+            $query->whereRaw('ST_DWithin(
+                location,
+                ST_MakePoint(?, ?)::geography,
+                ?
+            )', [...$coordinates, $distance]);
+        }
+    }
 }
