@@ -17,7 +17,11 @@ class StoresController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
-        $stores = Store::paginate();
+        $myLocation = [-79.47, 43.14];
+        
+        $stores = Store::
+            selectDistanceTo($myLocation)
+            ->paginate();
 
         return view('stores.index', ['stores' => $stores]);
     }
