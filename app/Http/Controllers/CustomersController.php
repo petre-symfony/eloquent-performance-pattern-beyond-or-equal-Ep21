@@ -20,7 +20,12 @@ class CustomersController extends Controller {
     public function index(): View {
         $regions = Region::all();
 
-        $customers = Customer::all();
+        $customers = Customer::
+            inRegion(
+                Region::where('name', 'The Prairies')
+                    ->first()
+            )
+            ->get();
 
         return view('customers.index', [
             'customers' => $customers,

@@ -27,4 +27,18 @@ class Customer extends Model {
             }
         });
     }
+
+    public function scopeInRegion($query, Region $region){
+        if (config('database.default') === 'mysql') {
+            $query->whereRaw('ST_Contains(?, customers.location)', [$region->geometry]);
+        }
+
+        if (config('database.default') === 'sqlite') {
+            throw new \Exception('This lesson does not support SQLite.');
+        }
+
+        if (config('database.default') === 'pgsql') {
+            $query->whereRaw('ST_Contains(?, customers.location::geometry)', [$region->geometry]);
+        }
+    }
 }
