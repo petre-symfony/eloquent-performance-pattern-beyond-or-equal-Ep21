@@ -9,6 +9,7 @@ return new class extends Migration {
      * Run the migrations.
      */
     public function up(): void {
+        /** Ep25, 26, 27
         Schema::create('stores', function (Blueprint $table) {
             $table->id();
             $table->string('address', 50);
@@ -18,12 +19,16 @@ return new class extends Migration {
             $table->point('location', 4326);
             $table->timestamps();
         });
+         */
     }
 
     /**
      * Reverse the migrations.
      */
     public function down(): void {
+        /** Ep25, 26, 27
         Schema::dropIfExists('stores');
+         *
+         */
     }
 };

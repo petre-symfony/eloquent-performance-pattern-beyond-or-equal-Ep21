@@ -17,14 +17,16 @@ class StoresController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
+        /** Ep25, 26, 27
         $myLocation = [-79.47, 43.14];
 
         $stores = Store::
-            selectDistanceTo($myLocation)
-            ->withinDistanceTo($myLocation, 10000)
-            ->orderByDistanceTo($myLocation)
+            //selectDistanceTo($myLocation) Ep25
+            //->withinDistanceTo($myLocation, 10000) Ep26
+            //->orderByDistanceTo($myLocation) Ep27
             ->paginate();
 
         return view('stores.index', ['stores' => $stores]);
+         */
     }
 }

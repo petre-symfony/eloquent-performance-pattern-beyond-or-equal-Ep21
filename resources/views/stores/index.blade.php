@@ -1,3 +1,4 @@
+{{-- Ep25, 26, 27
 <x-app-layout>
     <x-slot name="header">
         <header class="bg-white shadow">
@@ -64,3 +65,4 @@
         </div>
     </main>
 </x-app-layout>
+--}}

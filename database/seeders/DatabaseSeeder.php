@@ -51,6 +51,7 @@ class DatabaseSeeder extends Seeder {
         ]);
          */
 
+        /** Ep 25, 26, 27
         $stores = array_map('str_getcsv', file(__DIR__.'/stores.csv'));
         collect($stores)->each(fn ($store) => Store::factory()->create([
             'address' => $store[0],
@@ -72,6 +73,7 @@ class DatabaseSeeder extends Seeder {
             })()
         ])
         );
+         */
     }
     /** Ep23
     protected function getDevices() {

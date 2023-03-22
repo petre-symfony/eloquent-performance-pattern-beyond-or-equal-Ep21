@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Store extends Model {
     use HasFactory;
 
+    /** Ep25
     public function scopeSelectDistanceTo($query, array $coordinates){
         if (is_null($query->getQuery()->columns)) {
             $query->select('*');
@@ -31,7 +32,9 @@ class Store extends Model {
             ) as distance', $coordinates);
         }
     }
+    */
 
+    /**  Ep26
     public function scopeWithinDistanceTo($query, array $coordinates, int $distance){
         if (config('database.default') === 'mysql') {
             $query->whereRaw('ST_Distance(
@@ -52,7 +55,9 @@ class Store extends Model {
             )', [...$coordinates, $distance]);
         }
     }
+    */
 
+    /** Ep27
     public function scopeOrderByDistanceTo($query, array $coordinates, string $direction = 'asc'){
         $direction = strtolower($direction) === 'asc' ? 'asc' : 'desc';
 
@@ -74,4 +79,5 @@ class Store extends Model {
             ) '.$direction, $coordinates);
         }
     }
+     */
 }
