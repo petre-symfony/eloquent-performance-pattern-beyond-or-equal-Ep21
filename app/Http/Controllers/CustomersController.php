@@ -18,14 +18,9 @@ class CustomersController extends Controller {
      * Display the user's profile form.
      */
     public function index(): View {
-        $regions = Region::all();
+        $customers = Customer::inRandomOrder()->take(1)->get();
 
-        $customers = Customer::
-            inRegion(
-                Region::where('name', 'The Prairies')
-                    ->first()
-            )
-            ->get();
+        $regions = Region::hasCustomer($customers->first())->get();
 
         return view('customers.index', [
             'customers' => $customers,
