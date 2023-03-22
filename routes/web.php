@@ -5,6 +5,7 @@ use App\Http\Controllers\UsersController;
 use App\Http\Controllers\DevicesController;
 use App\Http\Controllers\PostsController;
 use App\Http\Controllers\StoresController;
+use App\Http\Controllers\CustomersController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,6 +23,7 @@ use Illuminate\Support\Facades\Route;
 // Route::get('/', [DevicesController::class, 'index']); Ep23
 // Route::get('/', [PostsController::class, 'index']); Ep24
 // Route::get('/', [StoresController::class, 'index']); Ep25, 26, 27
+Route::get('/', [CustomersController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
